@@ -7,14 +7,10 @@ router.get('/', async (req, res) => {
   // find all tags
   // be sure to include its associated Product data
   try {
-    const productData = await Product.findALL(req.params.id, {
-      include: [{ model: Product, through: ProductTag}]
+    const tagData = await Tag.findAll({
+      include: [{ model: Product, through: ProductTag }],
     });
-    if (!productData) {
-      res.status(404).json({ message: 'No tag with this id!' });
-      return;
-    }
-    res.status(200).json(travelerData);
+    res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -41,7 +37,7 @@ router.post('/', async (req, res) => {
   // create a new tag
   try {
     const tagData = await Tag.create({
-      name: req.body.name,
+      tag_name: req.body.name,
     });
     res.status(200).json(tagData);
   } catch (err) {
@@ -57,7 +53,7 @@ router.put('/:id', async (req, res) => {
         id: req.params.id,
       },
     });
-    if (!tagData[0]) {
+    if (!tagData) {
       res.status(404).json({ message: 'No tag with this id!' });
       return;
     }

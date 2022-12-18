@@ -20,6 +20,14 @@ ProductTag.init(
         unqiue: false,
       }
     },
+    tag_id: {
+      type: DataTypes.INTEGER,
+      REFERENCES:{
+        model: 'Tag',
+        key: 'id',
+        unqiue: false,
+      }
+    },
   },
   {
     sequelize,

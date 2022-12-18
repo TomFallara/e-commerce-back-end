@@ -10,20 +10,22 @@ const ProductTag = require('./ProductTag');
   });
 // Categories have many Products
  Category.hasMany(Product, {
-  foreighKey: 'product_id',
+  foreighKey: 'category_id',
   onDelete: 'CASCADE',
  })
 // Products belongToMany Tags (through ProductTag)
  Product.belongsToMany(Tag, {
   through:{
     model: ProductTag,
+    foreignKey: 'product_id',
     Unique: false
   }
  })
 // Tags belongToMany Products (through ProductTag)
- Tag.belongsToManu(Product, {
+ Tag.belongsToMany(Product, {
   through:{
     model: ProductTag,
+    foreighKey: 'tag_id',
     Unique: false
   }
  })

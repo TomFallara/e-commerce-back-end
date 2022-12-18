@@ -24,7 +24,7 @@ Product.init(
       allowNull: false,
       isDescimal: true,
     },
-    product_name: {
+    stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 10,
